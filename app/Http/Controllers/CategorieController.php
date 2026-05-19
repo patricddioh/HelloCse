@@ -8,10 +8,16 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use App\Enums\CategorieStatut;
 use Illuminate\Database\Eloquent\Builder;
+use App\Services\SuccessMessageService;
 
 class CategorieController
 {
-     /**
+
+    public function __construct (
+        protected SuccessMessageService $successMessage
+    ){}
+
+    /**
      * Display a listing of the resource.
      */
     public function index()
@@ -56,7 +62,7 @@ class CategorieController
             'statut' => $request->enum('statut', CategorieStatut::class)
         ]);
 
-        return redirect()->route('categories.index')->with('success', 'Categorie crée avec succès !'); 
+        return redirect()->route('categories.index')->with('success', $this->successMessage->success()); 
     }
 
     /**

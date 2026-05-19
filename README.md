@@ -1,5 +1,6 @@
 Test hellocse
 
 
-php artisan make:seed --class=ProduitSeeder
-php artisan make:seed --class=CategorieSeeder
+php artisan db:seed --class=ProduitSeeder
+
+php artisan db:seed --class=CategorieSeeder
